@@ -30,7 +30,7 @@ public class Event {
 	
 	@Column
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
-	private String date; 
+	private Date date; 
 	
 	@Column 
 	private String location; 
@@ -47,7 +47,7 @@ public class Event {
 		
 	}
 	
-	public Event(String name, String date, String location) {
+	public Event(String name, Date date, String location) {
 		this.name = name; 
 		this.date = date; 
 		this.location = location; 
@@ -79,11 +79,11 @@ public class Event {
 		this.name = name;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
