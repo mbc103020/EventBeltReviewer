@@ -33,7 +33,10 @@ public class Event {
 	private Date date; 
 	
 	@Column 
-	private String location; 
+	private String city; 
+	
+	@Column
+	private String state; 
 	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")  //annotation from Spring
@@ -47,10 +50,11 @@ public class Event {
 		
 	}
 	
-	public Event(String name, Date date, String location) {
+	public Event(String name, Date date, String city, String state) {
 		this.name = name; 
 		this.date = date; 
-		this.location = location; 
+		this.city = city; 
+		this.state = state; 
 	}
 	
 	@PrePersist
@@ -87,12 +91,20 @@ public class Event {
 		this.date = date;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getState() {
+		return state;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCity() {
+		return this.city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	} 
 
 }
