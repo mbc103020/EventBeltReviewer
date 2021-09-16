@@ -56,15 +56,7 @@ public class User {
 	
     private Date updatedAt;
     
-    @PrePersist
-    protected void onCreate(){
-        this.createdAt = new Date();
-    }
-    @PreUpdate
-    protected void onUpdate(){
-        this.updatedAt = new Date();
-    }
-    
+   
 	public User() {
 
 	}
@@ -132,6 +124,35 @@ public class User {
 		this.confirmPassword = confirmPassword;
 	}
 	
+	public Date getCreatedAt() {
+		return createdAt;
+	}
 
 
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	@PrePersist
+    protected void onCreate(){
+        this.createdAt = new Date();
+    }
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt = new Date();
+    }
+    
 }
