@@ -1,6 +1,6 @@
 package com.eventbeltreviewer.models;
 
-import java.beans.Transient;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -48,6 +49,7 @@ public class User {
 	
 	@Transient
 	private String confirmPassword;
+	
 	
 	@Column(updatable=false)
     private Date createdAt;
