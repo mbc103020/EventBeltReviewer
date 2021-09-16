@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>Welcome, Ninja</h1>
+<a href="">Logout</a>
+<p>Here are some of the events in your state</p>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Host</th>
+            <th>Action/Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="event : ${events}">
+            <td><a th:href="@{|/events/${event.id}|}"><p th:text="${event.name}"/></a></td>
+            <td th:text="${event.date}"/></td>
+            <td th:text="${event.location}"/></td>
+            <td th:text="${event}"/></td> <!-- will change to event.host? -->
+            <td>Action Status link/button here</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Here are some of the events in other states</p>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>State</th>
+            <th>Host</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="event : ${events}">
+            <td><a th:href="@{|/events/${event.id}|}"><p th:text="${event.name}"/></a></td>
+            <td th:text="${event.date}"/></td>
+            <td th:text="${event.location}"/></td> <!-- will change to event.location.city? -->
+            <td th:text="${event.location}"/></td> <!--will change to event.location.state? -->
+            <td th:text="${event}"/></td>  <!-- will change to event.host id -->
+            <td>Action link/button here</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Create an Event</h2>
+<form action="/events/newEvent" th:object="${event}" method="POST">
+		<label for"name">Name: </label>
+		<input type="text" th:field="*{name}"/>
+		<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/>
+		
+		<label for"date">Date: </label>
+		<input type="text" th:field="*{date}"/>
+		<p th:if="${#fields.hasErrors('date')}" th:errors="*{date}"/>
+
+		<label for"location">Location: </label>
+		<input type="text" th:field="*{location}"/>
+		<p th:if="${#fields.hasErrors('location')}" th:errors="*{location}"/>
+
+		<input type="submit" value="Add Your Event"/>
+		
+	</form>
+
+
+</body>
+</html>
