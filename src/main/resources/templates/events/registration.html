@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head th:replace="fragments::header"></head>
+	<body>
+		<form action="/user/register" th:object="${user}" method="POST">
+		
+			<input type="text" th:field="*{firstName}" th:errorclass="error" placeholder="first name">
+			<p  th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error_message"/>
+			
+			<input type="text" th:field="*{lastName}" th:errorclass="error" placeholder="last name">
+			<p  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error_message"/>
+			
+			
+			<input type="text" th:field="*{email}" th:errorclass="error" placeholder="email">
+			<p  th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error_message"/>
+			
+			<input type="select" th:field="*{city}" th:errorclass="error" placeholder="city">
+			<p  th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="error_message"/>
+			
+			<input type="select" th:field="*{state}" th:errorclass="error" placeholder="state">
+			<p  th:if="${#fields.hasErrors('state')}" th:errors="*{state}" class="error_message"/>
+			
+			<input type="password" th:field="*{password}" th:errorclass="error" placeholder="password">
+			<p  th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error_message"/>
+			
+			<input type="password" th:field="*{passwordConfirmation}" th:errorclass="error" placeholder="confirm password">
+			<p  th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{passwordConfirmation}" class="error_message"/>
+			
+			<button type="submit">Login</button>
+		</form>
+	</body>
+</html>
