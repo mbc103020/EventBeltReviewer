@@ -42,14 +42,15 @@ public class EventService {
 		this.eventRepository.save(event);
 	}
     
-    public Event updateEvent(Long id, String name, Date date, String location) {
+    public Event updateEvent(Long id, String name, Date date, String city, String state) {
     	
     	Event event = findEventById(id); 
     	
     	if(event != null) {
     		event.setName(name);
     		event.setDate(date);
-    		event.setLocation(location);
+    		event.setCity(city);
+    		event.setState(state);
     		this.save(event); 
     	}
     	return event; 
