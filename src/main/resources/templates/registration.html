@@ -3,7 +3,7 @@
 	<head>
 	</head>
 	<body>
-		<form action="/user/register" th:object="${user}" method="POST">
+		<form action="/user/registration" th:object="${user}" method="POST">
 		
 			<input type="text" th:field="*{firstName}" th:errorclass="error" placeholder="first name">
 			<p  th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error_message"/>
