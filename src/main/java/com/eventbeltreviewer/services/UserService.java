@@ -2,13 +2,11 @@ package com.eventbeltreviewer.services;
 
 import java.util.Optional;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.eventbeltreviewer.models.User;
 import com.eventbeltreviewer.repositories.UserRepository;
-
-import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
 public class UserService {

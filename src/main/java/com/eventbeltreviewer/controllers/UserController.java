@@ -5,6 +5,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,22 +21,23 @@ public class UserController {
 private UserService userService;
 
 @RequestMapping("/registration")
-public String registerForm(@ModelAttribute("user") User user) {
-	return "registration";
+public String register(@ModelAttribute("user") User user) {
+	return "user/registration";
 }
 @PostMapping("/registration")
 public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
 if(result.hasErrors()) {
-	return "registration";
+	return "user/registration";
 }else {
 	User u = userService.registerUser(user);
 	session.setAttribute("userId", u.getId());
-	return "redirect:/home";
+	return "redirect:/user/registration";
 }
 }
 @RequestMapping("/login")
-public String Login() { 
-	return "login";
+public String Login(Model model) { 
+	
+	return "user/login";
 }
 
 
