@@ -22,7 +22,7 @@ public class EventController {
 		this.eventService = eventService; 
 	}
 	
-	@RequestMapping("/")
+	@RequestMapping("/event")
 	public String eventsHome(Model model, @ModelAttribute("event") Event event) {
 		List<Event> events = this.eventService.allEvents(); 
 		model.addAttribute("events", events); 
