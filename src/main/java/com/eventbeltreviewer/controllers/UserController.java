@@ -22,10 +22,12 @@ private UserService userService;
 public String registerForm(@ModelAttribute("user") User user) {
 	return "registration";
 }
-//@RequestMapping("/login")
-//public String getLogin(@ModelAttribute("user") User user) { 
-//	return "login";
-//}
+
+
+@RequestMapping("/login")
+public String Login() { 
+	return "login";
+}
 //
 //@PostMapping("/login")
 //public String Login(@Valid User user, BindingResult result,) {
