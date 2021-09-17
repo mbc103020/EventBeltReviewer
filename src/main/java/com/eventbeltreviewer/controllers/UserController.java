@@ -18,6 +18,10 @@ public class UserController {
 @Autowired
 private UserService userService;
 
+@RequestMapping("/registration")
+public String registerForm(@ModelAttribute("user") User user) {
+	return "registration";
+}
 //@RequestMapping("/login")
 //public String getLogin(@ModelAttribute("user") User user) { 
 //	return "login";
