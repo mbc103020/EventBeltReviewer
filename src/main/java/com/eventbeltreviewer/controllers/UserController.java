@@ -1,5 +1,6 @@
 package com.eventbeltreviewer.controllers;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +23,20 @@ private UserService userService;
 public String registerForm(@ModelAttribute("user") User user) {
 	return "registration";
 }
-
-
+@PostMapping("/registration")
+public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
+if(result.hasErrors()) {
+	return "registration";
+}else {
+	User u = userService.registerUser(user);
+	session.setAttribute("userId", u.getId());
+	return "redirect:/home";
+}
+}
 @RequestMapping("/login")
 public String Login() { 
 	return "login";
 }
-//
-//@PostMapping("/login")
-//public String Login(@Valid User user, BindingResult result,) {
-//
-//}
+
+
 }
