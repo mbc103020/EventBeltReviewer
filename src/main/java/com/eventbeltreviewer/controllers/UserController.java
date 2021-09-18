@@ -37,7 +37,7 @@ if(result.hasErrors()) {
 }
 }
 @RequestMapping("/login")
-public String Login() { 
+public String Login(@ModelAttribute("user") User user) { 
 	return "user/login";
 }
 
@@ -53,7 +53,7 @@ public String loginUser(@RequestParam("email") String email, @RequestParam("pass
 		return "redirect:/home";
 	}else {
 		model.addAttribute("error", "Invalid Credentials");
-		return "loginPage.jsp";
+		return "login";
 	}
 }
 

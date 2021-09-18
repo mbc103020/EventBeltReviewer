@@ -6,7 +6,7 @@
 	</head>
 	<body>
 	<h1>Login</h1>
-		<form action="user/login" th:object="${user}" method="POST">
+		<form action="/user/login" th:object="${user}" method="POST">
 		
 			<input type="text" th:field="*{email}" th:errorclass="error" placeholder="email">
 			<p  th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error_message"/>
