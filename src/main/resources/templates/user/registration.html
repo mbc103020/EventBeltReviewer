@@ -15,7 +15,14 @@
 			<input type="text" th:field="*{email}" th:errorclass="error" placeholder="email">
 			<p  th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error_message"/>
 			
+			<input type="text" th:field="*{city}" th:errorclass="error" placeholder="city">
+			<p  th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="error_message"/>
 			
+			<label for="state">state</label>
+    <select id="state" name="state">
+        <option th:each="state : ${states}" th:text="${state.name}" th:value="${state}"></option>
+    </select>
+    
 			<input type="password" th:field="*{password}" th:errorclass="error" placeholder="password">
 			<p  th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error_message"/>
 			
