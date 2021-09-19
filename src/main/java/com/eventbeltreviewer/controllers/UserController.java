@@ -29,17 +29,19 @@ public static final String[] states = {
 };
 
 @RequestMapping("/registration")
-public String register(@ModelAttribute("user") User user) {
+public String register(@ModelAttribute("user") User user, Model model) {
+	model.addAttribute("states", states);
 	return "user/registration";
 }
 @PostMapping("/registration")
-public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
+public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session, Model model) {
 if(result.hasErrors()) {
+	model.addAttribute("states", states);
 	return "user/registration";
 }else {
 	User u = userService.registerUser(user);
 	session.setAttribute("userId", u.getId());
-	return "redirect:/user/registration";
+	return "redirect:/user/login";
 }
 }
 @RequestMapping("/login")
@@ -59,7 +61,7 @@ public String loginUser(@RequestParam("email") String email, @RequestParam("pass
 		return "redirect:/home";
 	}else {
 		model.addAttribute("error", "Invalid Credentials");
-		return "login";
+		return "user/login";
 	}
 }
 

@@ -60,10 +60,17 @@ public class Event {
 	@JoinColumn(name="user_id")
 	private User planner;
 	
-	//for many to many
-	@OneToMany(mappedBy="event", fetch=FetchType.LAZY)
-	@JsonIgnore
-	private List<UserEvent> attendees;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+		name = "usersevents",
+		joinColumns = @JoinColumn(name = "event_id"),
+		inverseJoinColumns = @JoinColumn(name = "user_id")
+	)
+	private List<User> attendees;
+	
+//	   @OneToMany(mappedBy="event", fetch = FetchType.LAZY)
+//		private List<Message> messages;
+		
 	
 	public Event() {
 		
@@ -125,5 +132,24 @@ public class Event {
 	public void setCity(String city) {
 		this.city = city;
 	} 
+
+public List<User> getAttendees() {
+	return attendees;
+}
+	public void setAttendees(List<User> attendees) {
+		this.attendees = attendees;
+	}
+	public User getPlanner() {
+		return planner;
+	}
+	public void setPlanner(User planner) {
+		this.planner = planner;
+	}
+//	public void setMessages(List<Message> messages) {
+//		this.messages = messages;
+//	}
+//	public List<Message> getMessages() {
+//		return messages;
+//	}
 
 }

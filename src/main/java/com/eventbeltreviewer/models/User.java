@@ -10,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -21,6 +24,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -45,7 +49,6 @@ public class User {
 	@NotEmpty
 	private String city;
 	
-	@NotEmpty
 	private String state;
 	
 	@NotEmpty
@@ -69,14 +72,26 @@ public class User {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
+    
+    
+    
     //for user to event one to many
     @OneToMany(mappedBy="planner", fetch = FetchType.LAZY)
-    private List<Event> plannerEvents; 
+    private List<Event> eventsPlanned; 
+   
     
-    //for many to many, user events to attend
-    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<UserEvent> userEventsToAttend; 
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+    	name = "usersevents",
+    	joinColumns = @JoinColumn(name = "user_id"),
+    	inverseJoinColumns = @JoinColumn(name = "event_id")
+    )
+    private List<Event> joinedevents;
+    
+//    @OneToMany(mappedBy="author", fetch = FetchType.LAZY)
+//	private List<Message> messages;
+    
     
 	public User() {
 
@@ -177,4 +192,27 @@ public class User {
 		this.updatedAt = updatedAt;
 	}
     
+	public List<Event> getJoinedevents() {
+		return joinedevents;
+	}
+
+	public void setJoinedevents(List<Event> joinedevents) {
+		this.joinedevents = joinedevents;
+	}
+	
+	
+	public List<Event> getEvents() {
+		return eventsPlanned;
+	}
+	public void setEvents(List<Event> eventsPlanned) {
+		this.eventsPlanned = eventsPlanned;
+	}
+	
+	
+//	public List<Message> getMessages() {
+//		return messages;
+//	} 
+//	public void setMessages(List<Message> messages) {
+//		this.messages = messages;
+//	}
 }
